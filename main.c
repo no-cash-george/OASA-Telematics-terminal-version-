@@ -9,7 +9,7 @@ typedef struct arrival {
 
 int main() {
     int stop_id;
-    printf("Give me a stop code: ");
+    fprintf(stderr, "Give me the stop code: ");
     fflush(stdout);
     scanf("%d", &stop_id);
 
