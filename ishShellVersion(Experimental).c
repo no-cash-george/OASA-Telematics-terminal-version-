@@ -198,6 +198,7 @@ void favouritesMenu()
 
     if(sel >= 0 && sel < favourites.numOfFavourites)
     {
+        system("clear");
         showArrivals(getArrivals(favourites.favourites[sel].code));
     } else
     {
