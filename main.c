@@ -10,10 +10,7 @@ typedef struct arrival {
 int main() {
     int stop_id;
     printf("Give me a stop code: ");
-    if (scanf("%d", &stop_id) != 1) {
-        fprintf(stderr, "Invalid input.\n");
-        return 1;
-    }
+    scanf("%d", &stop_id);
 
     char command[256];
     snprintf(command, sizeof(command), "./arrivals.sh %d", stop_id);
