@@ -34,6 +34,7 @@ void showArrivals(Arrivals arrivals);
 void showMenu();
 void favouritesMenu();
 void addFavouriteMenu();
+void update();
 Favourites getFavourites();
 
 int main() {
@@ -74,6 +75,11 @@ int main() {
         {
             addFavouriteMenu();
 
+        }break;
+        case 4:
+        {
+            update();
+            return;
         }break;
         default:
         {
@@ -144,7 +150,7 @@ Arrivals getArrivals(int stop_id)
 void showMenu()
 {
     system("clear");
-    printf("1. Get arrivals by code\n2.Favourites\n3.Add Favourites\n4.Exit\n>");
+    printf("1. Get arrivals by code\n2.Favourites\n3.Add Favourites\n4.Update\n5.Exit\n>");
     fflush(stdout);
 }
 
@@ -268,4 +274,9 @@ Favourites getFavourites()
 
     fclose(file);
     return f;
+}
+
+void update()
+{
+    system("./update.sh");
 }
