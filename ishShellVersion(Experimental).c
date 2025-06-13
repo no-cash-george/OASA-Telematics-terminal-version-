@@ -150,25 +150,44 @@ void showMenu()
 
 void showArrivals(Arrivals arrivals)
 {
-    if(arrivals.numOfArrivals == 0)
-    {
-        printf("No arrivals for the given stop\nPress enter to continue");
+    int getNext = 1;
+    while(getNext){ 
+        system("clear");
+        if(arrivals.numOfArrivals == 0)
+        {
+            printf("No arrivals for the given stop\nPress press 0 to continue");
+            fflush(stdout);
+            int sel;
+            scanf("%d", &sel);
+            if(sel == 0)
+            {
+                break;
+            }else
+            {
+                continue;
+            }
+        }
+
+        for (size_t i = 0; i < arrivals.numOfArrivals; i++) 
+        {
+            printf("Route: %d | Vehicle: %d | Arrival in: %.1f mins\n",
+                    arrivals.arrivalArray[i].routeCode,
+                    arrivals.arrivalArray[i].vehCode,
+                    arrivals.arrivalArray[i].arrivalTime);
+        } 
+
+        printf("Refreshes every 30 seconds\nPress 0 if you want to exit");
         fflush(stdout);
-        getchar();
-        return;
+        int sel;
+        scanf("%d", &sel);
+        if(sel == 0)
+        {
+            break;
+        }else
+        {
+            sleep(30);
+        }
     }
-
-    for (size_t i = 0; i < arrivals.numOfArrivals; i++) 
-    {
-        printf("Route: %d | Vehicle: %d | Arrival in: %.1f mins\n",
-               arrivals.arrivalArray[i].routeCode,
-               arrivals.arrivalArray[i].vehCode,
-               arrivals.arrivalArray[i].arrivalTime);
-    } 
-
-    printf("Press enter to continue");
-    fflush(stdout);
-    getchar();
 }
 
 void favouritesMenu()
