@@ -1,3 +1,3 @@
 cd /root/OASA-Telematics-terminal-version-/
-git fetchgcc "ishShellVersion(Experimental).c" -o ishShell
+git fetch
 gcc "ishShellVersion(Experimental).c" -o ishShell
