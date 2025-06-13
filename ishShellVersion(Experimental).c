@@ -296,7 +296,7 @@ char* getRouteName(int routeCode)
     char command[512];
 
     // Δημιουργία εντολής curl + jq
-    snprintf(command, sizeof(command), "curl -s -A 'Mozilla/5.0'` 'http://telematics.oasa.gr/api/?act=getRouteName&p1=%d' | jq -r '.[0].route_departure_eng'", routeCode);
+    snprintf(command, sizeof(command), "curl -s -A 'Mozilla/5.0' 'http://telematics.oasa.gr/api/?act=getRouteName&p1=%d' | jq -r '.[0].route_departure_eng'", routeCode);
 
     FILE* fp = popen(command, "r");
     if (fp == NULL) 
