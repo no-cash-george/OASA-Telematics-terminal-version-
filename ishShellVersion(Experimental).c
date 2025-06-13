@@ -79,7 +79,7 @@ int main() {
         case 4:
         {
             update();
-            return;
+            return 0;
         }break;
         default:
         {
