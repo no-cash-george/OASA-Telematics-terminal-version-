@@ -177,16 +177,13 @@ void showArrivals(Arrivals arrivals)
                     arrivals.arrivalArray[i].arrivalTime);
         } 
 
-        printf("Refreshes every 30 seconds\nPress 0 if you want to exit");
+        printf("0.Exit | 1.Refresh\n>");
         fflush(stdout);
         int sel;
         scanf("%d", &sel);
         if(sel == 0)
         {
             break;
-        }else
-        {
-            sleep(30);
         }
     }
 }
