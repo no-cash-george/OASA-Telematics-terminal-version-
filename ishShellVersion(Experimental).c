@@ -172,7 +172,7 @@ void showArrivals(Arrivals arrivals)
 
         for (size_t i = 0; i < arrivals.numOfArrivals; i++) 
         {
-            printf("Route: %s | Arrival in: %.1f mins\n",
+            printf("Route: %s | %.1f'\n",
                     getRouteName(arrivals.arrivalArray[i].routeCode),
                     arrivals.arrivalArray[i].arrivalTime);
         } 
