@@ -278,5 +278,5 @@ Favourites getFavourites()
 
 void update()
 {
-    system("./update.sh");
+    system("/root/OASA-Telematics-terminal-version-/update.sh");
 }
