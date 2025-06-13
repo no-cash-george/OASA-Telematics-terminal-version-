@@ -35,6 +35,8 @@ void showMenu();
 void favouritesMenu();
 void addFavouriteMenu();
 Favourites getFavourites();
+char* getRouteName(int routeCode);
+
 
 int main() {
     int running = 1;
@@ -170,9 +172,8 @@ void showArrivals(Arrivals arrivals)
 
         for (size_t i = 0; i < arrivals.numOfArrivals; i++) 
         {
-            printf("Route: %d | Vehicle: %d | Arrival in: %.1f mins\n",
-                    arrivals.arrivalArray[i].routeCode,
-                    arrivals.arrivalArray[i].vehCode,
+            printf("Route: %s | Arrival in: %.1f mins\n",
+                    getRouteName(arrivals.arrivalArray[i].routeCode),
                     arrivals.arrivalArray[i].arrivalTime);
         } 
 
@@ -288,3 +289,36 @@ Favourites getFavourites()
     fclose(file);
     return f;
 }
+
+char* getRouteName(int routeCode)
+{
+    static char routeName[256];
+    char command[512];
+
+    // Δημιουργία εντολής curl + jq
+    snprintf(command, sizeof(command), "curl -s -A 'Mozilla/5.0'` 'http://telematics.oasa.gr/api/?act=getRouteName&p1=%d' | jq -r '.[0].route_departure_eng'", routeCode);
+
+    FILE* fp = popen(command, "r");
+    if (fp == NULL) 
+    {
+        perror("popen failed");
+        return NULL;
+    }
+
+    if (fgets(routeName, sizeof(routeName), fp) == NULL) 
+    {
+        pclose(fp);
+        return NULL;
+    }
+
+    // Αφαίρεση new line αν υπάρχει
+    size_t len = strlen(routeName);
+    if (len > 0 && routeName[len - 1] == '\n')
+    {
+        routeName[len - 1] = '\0';
+    }
+    
+    pclose(fp);
+    return routeName;
+}
+
